@@ -1,0 +1,385 @@
+{
+  "_comment": [
+    "Balatro DQN \u2014 Joker definitions.",
+    "",
+    "Each joker has three parts:",
+    "  trigger   : when the effect fires",
+    "              'passive'        \u2014 always active, added every hand",
+    "              'on_hand_played' \u2014 fires once per hand play if condition met",
+    "              'on_card_scored' \u2014 fires once per qualifying scored card",
+    "",
+    "  condition : what must be true for the trigger to fire",
+    "              {'type': 'none'}                         \u2014 always fires",
+    "              {'type': 'hand_contains', 'hand_type': X} \u2014 played hand contains pattern X",
+    "              {'type': 'hand_type_exact', 'hand_type': X} \u2014 played hand is exactly X",
+    "              {'type': 'card_count_le',  'value': N}   \u2014 N or fewer cards played",
+    "              {'type': 'card_suit',      'suit': X}    \u2014 card suit matches X (S/H/D/C)",
+    "",
+    "  effect    : what the joker does when triggered",
+    "              {'type': 'add_mult',  'value': N} \u2014 adds N to multiplier",
+    "              {'type': 'add_chips', 'value': N} \u2014 adds N to chips",
+    "",
+    "Tiers:",
+    "  1 \u2014 simple hand-type conditional or passive (phases 6-7)",
+    "  2 \u2014 per-card suit or count conditional (phase 8+)"
+  ],
+  "jokers": [
+    {
+      "id": "joker",
+      "name": "Joker",
+      "description": "+4 Mult",
+      "rarity": "common",
+      "tier": 1,
+      "trigger": "passive",
+      "condition": {
+        "type": "none"
+      },
+      "effect": {
+        "type": "add_mult",
+        "value": 4
+      }
+    },
+    {
+      "id": "jolly_joker",
+      "name": "Jolly Joker",
+      "description": "+8 Mult if played hand contains a Pair",
+      "rarity": "common",
+      "tier": 1,
+      "trigger": "on_hand_played",
+      "condition": {
+        "type": "hand_contains",
+        "hand_type": "One Pair"
+      },
+      "effect": {
+        "type": "add_mult",
+        "value": 8
+      }
+    },
+    {
+      "id": "sly_joker",
+      "name": "Sly Joker",
+      "description": "+50 Chips if played hand contains a Pair",
+      "rarity": "common",
+      "tier": 1,
+      "trigger": "on_hand_played",
+      "condition": {
+        "type": "hand_contains",
+        "hand_type": "One Pair"
+      },
+      "effect": {
+        "type": "add_chips",
+        "value": 50
+      }
+    },
+    {
+      "id": "mad_joker",
+      "name": "Mad Joker",
+      "description": "+10 Mult if played hand contains a Two Pair",
+      "rarity": "common",
+      "tier": 1,
+      "trigger": "on_hand_played",
+      "condition": {
+        "type": "hand_contains",
+        "hand_type": "Two Pair"
+      },
+      "effect": {
+        "type": "add_mult",
+        "value": 10
+      }
+    },
+    {
+      "id": "clever_joker",
+      "name": "Clever Joker",
+      "description": "+80 Chips if played hand contains a Two Pair",
+      "rarity": "common",
+      "tier": 1,
+      "trigger": "on_hand_played",
+      "condition": {
+        "type": "hand_contains",
+        "hand_type": "Two Pair"
+      },
+      "effect": {
+        "type": "add_chips",
+        "value": 80
+      }
+    },
+    {
+      "id": "zany_joker",
+      "name": "Zany Joker",
+      "description": "+12 Mult if played hand contains a Three of a Kind",
+      "rarity": "common",
+      "tier": 1,
+      "trigger": "on_hand_played",
+      "condition": {
+        "type": "hand_contains",
+        "hand_type": "Three of a Kind"
+      },
+      "effect": {
+        "type": "add_mult",
+        "value": 12
+      }
+    },
+    {
+      "id": "wily_joker",
+      "name": "Wily Joker",
+      "description": "+100 Chips if played hand contains a Three of a Kind",
+      "rarity": "common",
+      "tier": 1,
+      "trigger": "on_hand_played",
+      "condition": {
+        "type": "hand_contains",
+        "hand_type": "Three of a Kind"
+      },
+      "effect": {
+        "type": "add_chips",
+        "value": 100
+      }
+    },
+    {
+      "id": "crazy_joker",
+      "name": "Crazy Joker",
+      "description": "+12 Mult if played hand contains a Straight",
+      "rarity": "common",
+      "tier": 1,
+      "trigger": "on_hand_played",
+      "condition": {
+        "type": "hand_contains",
+        "hand_type": "Straight"
+      },
+      "effect": {
+        "type": "add_mult",
+        "value": 12
+      }
+    },
+    {
+      "id": "devious_joker",
+      "name": "Devious Joker",
+      "description": "+100 Chips if played hand contains a Straight",
+      "rarity": "common",
+      "tier": 1,
+      "trigger": "on_hand_played",
+      "condition": {
+        "type": "hand_contains",
+        "hand_type": "Straight"
+      },
+      "effect": {
+        "type": "add_chips",
+        "value": 100
+      }
+    },
+    {
+      "id": "droll_joker",
+      "name": "Droll Joker",
+      "description": "+10 Mult if played hand contains a Flush",
+      "rarity": "common",
+      "tier": 1,
+      "trigger": "on_hand_played",
+      "condition": {
+        "type": "hand_contains",
+        "hand_type": "Flush"
+      },
+      "effect": {
+        "type": "add_mult",
+        "value": 10
+      }
+    },
+    {
+      "id": "crafty_joker",
+      "name": "Crafty Joker",
+      "description": "+80 Chips if played hand contains a Flush",
+      "rarity": "common",
+      "tier": 1,
+      "trigger": "on_hand_played",
+      "condition": {
+        "type": "hand_contains",
+        "hand_type": "Flush"
+      },
+      "effect": {
+        "type": "add_chips",
+        "value": 80
+      }
+    },
+    {
+      "id": "half_joker",
+      "name": "Half Joker",
+      "description": "+20 Mult if played hand has 3 or fewer cards",
+      "rarity": "uncommon",
+      "tier": 2,
+      "trigger": "on_hand_played",
+      "condition": {
+        "type": "card_count_le",
+        "value": 3
+      },
+      "effect": {
+        "type": "add_mult",
+        "value": 20
+      }
+    },
+    {
+      "id": "greedy_joker",
+      "name": "Greedy Joker",
+      "description": "+3 Mult per played Diamond card",
+      "rarity": "common",
+      "tier": 2,
+      "trigger": "on_card_scored",
+      "condition": {
+        "type": "card_suit",
+        "suit": "D"
+      },
+      "effect": {
+        "type": "add_mult",
+        "value": 3
+      }
+    },
+    {
+      "id": "lusty_joker",
+      "name": "Lusty Joker",
+      "description": "+3 Mult per played Heart card",
+      "rarity": "common",
+      "tier": 2,
+      "trigger": "on_card_scored",
+      "condition": {
+        "type": "card_suit",
+        "suit": "H"
+      },
+      "effect": {
+        "type": "add_mult",
+        "value": 3
+      }
+    },
+    {
+      "id": "wrathful_joker",
+      "name": "Wrathful Joker",
+      "description": "+3 Mult per played Spade card",
+      "rarity": "common",
+      "tier": 2,
+      "trigger": "on_card_scored",
+      "condition": {
+        "type": "card_suit",
+        "suit": "S"
+      },
+      "effect": {
+        "type": "add_mult",
+        "value": 3
+      }
+    },
+    {
+      "id": "gluttonous_joker",
+      "name": "Gluttonous Joker",
+      "description": "+3 Mult per played Club card",
+      "rarity": "common",
+      "tier": 2,
+      "trigger": "on_card_scored",
+      "condition": {
+        "type": "card_suit",
+        "suit": "C"
+      },
+      "effect": {
+        "type": "add_mult",
+        "value": 3
+      }
+    },
+    {
+      "id": "misprint",
+      "name": "Misprint",
+      "description": "+0-23 Mult (random each hand)",
+      "rarity": "uncommon",
+      "tier": 2,
+      "trigger": "passive",
+      "condition": {
+        "type": "none"
+      },
+      "effect": {
+        "type": "add_mult_random",
+        "min": 0,
+        "max": 23
+      }
+    },
+    {
+      "id": "fibonacci",
+      "name": "Fibonacci",
+      "description": "+8 Mult per played Ace, 2, 3, 5, or 8",
+      "rarity": "uncommon",
+      "tier": 2,
+      "trigger": "on_card_scored",
+      "condition": {
+        "type": "card_rank_in",
+        "ranks": [
+          14,
+          2,
+          3,
+          5,
+          8
+        ]
+      },
+      "effect": {
+        "type": "add_mult",
+        "value": 8
+      }
+    },
+    {
+      "id": "scary_face",
+      "name": "Scary Face",
+      "description": "+30 Chips per played face card (J, Q, K)",
+      "rarity": "common",
+      "tier": 2,
+      "trigger": "on_card_scored",
+      "condition": {
+        "type": "card_rank_in",
+        "ranks": [
+          11,
+          12,
+          13
+        ]
+      },
+      "effect": {
+        "type": "add_chips",
+        "value": 30
+      }
+    },
+    {
+      "id": "even_steven",
+      "name": "Even Steven",
+      "description": "+4 Mult per played even-ranked card (10, 8, 6, 4, 2)",
+      "rarity": "common",
+      "tier": 2,
+      "trigger": "on_card_scored",
+      "condition": {
+        "type": "card_rank_in",
+        "ranks": [
+          10,
+          8,
+          6,
+          4,
+          2
+        ]
+      },
+      "effect": {
+        "type": "add_mult",
+        "value": 4
+      }
+    },
+    {
+      "id": "odd_todd",
+      "name": "Odd Todd",
+      "description": "+31 Chips per played odd-ranked card (A, 9, 7, 5, 3)",
+      "rarity": "common",
+      "tier": 2,
+      "trigger": "on_card_scored",
+      "condition": {
+        "type": "card_rank_in",
+        "ranks": [
+          14,
+          9,
+          7,
+          5,
+          3
+        ]
+      },
+      "effect": {
+        "type": "add_chips",
+        "value": 31
+      }
+    }
+  ]
+}
